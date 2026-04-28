@@ -83,7 +83,6 @@
             background-color: #fff;
         }
 
-        /* CONVITE: Nome exato convite.png */
         .img-display {
             width: 100%;
             height: auto;
@@ -145,6 +144,25 @@
             box-shadow: 0 0 50px rgba(236, 72, 153, 0.6);
         }
 
+        /* Botão de Música */
+        #music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(236, 72, 153, 0.8);
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
         .sakura {
             position: fixed;
             top: -10%;
@@ -163,15 +181,25 @@
 </head>
 <body>
 
+    <!-- Controle de Música -->
+    <div id="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🔇</span>
+    </div>
+
+    <!-- Áudio do Repositório -->
+    <audio id="naruto-theme" loop>
+        <source src="naruto-soundtrack-sadness-and-sorrow-(full-version)-(128-kbps)-made-with-Voicemod.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="global-bg"></div>
     <div class="overlay"></div>
     <div id="sakura-container"></div>
 
+    <!-- TELA PRINCIPAL -->
     <div id="main-invite" class="page-container">
         <div class="card-convite">
             <div class="card-header">VOCÊ FOI CONVOCADO!</div>
             <div class="card-body">
-                <!-- Imagem do convite na tela inicial -->
                 <img src="convite.png" alt="Convite Otoniel" class="img-display">
             </div>
             <div class="info-footer">
@@ -190,12 +218,12 @@
         </button>
     </div>
 
+    <!-- TELA DE CONFIRMAÇÃO -->
     <div id="confirmation-page" class="page-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
         <div class="glass-box-confirm">
             <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
             
             <div class="mb-6 w-full rounded-xl overflow-hidden border-2 border-pink-500">
-                <!-- Imagem do convite na tela de confirmação -->
                 <img src="convite.png" alt="Convite Confirmado" class="img-display">
             </div>
 
@@ -208,7 +236,27 @@
     </div>
 
     <script>
+        const audio = document.getElementById('naruto-theme');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.innerText = '🔇';
+            } else {
+                audio.play();
+                musicIcon.innerText = '🔊';
+            }
+            isPlaying = !isPlaying;
+        }
+
         function confirmar() {
+            // Tenta tocar a música ao clicar no botão (interação do usuário)
+            if (!isPlaying) {
+                toggleMusic();
+            }
+
             document.getElementById('main-invite').style.display = 'none';
             const p2 = document.getElementById('confirmation-page');
             p2.style.display = 'flex';

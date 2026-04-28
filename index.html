@@ -17,7 +17,7 @@
             min-height: 100vh;
         }
 
-        /* FUNDO: Nome exato conforme repositório (background.JPG) */
+        /* FUNDO: Usando o nome exato com .JPG maiúsculo conforme a foto do GitHub */
         .global-bg {
             position: fixed;
             top: 0;
@@ -25,7 +25,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-image: url('background.JPG'); 
+            /* %20 substitui o espaço para o navegador entender */
+            background-image: url('fundo%20otoniel.JPG'); 
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -78,12 +79,12 @@
         }
 
         .card-body {
-            padding: 8px;
+            padding: 10px;
             text-align: center;
             background-color: #fff;
         }
 
-        /* IMAGEM DO CONVITE: Nome exato conforme repositório (convite.PNG) */
+        /* CONVITE: Usando o nome exato com .PNG maiúsculo conforme a foto do GitHub */
         .img-display {
             width: 100%;
             height: auto;
@@ -109,11 +110,6 @@
             font-weight: bold;
             text-decoration: none;
             margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .btn-mapa:active {
-            background: #000;
         }
 
         .font-naruto {
@@ -150,15 +146,6 @@
             box-shadow: 0 0 50px rgba(236, 72, 153, 0.6);
         }
 
-        .img-container-confirm {
-            width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid #ec4899;
-            margin-bottom: 1.5rem;
-            background: #1a1016;
-        }
-
         .sakura {
             position: fixed;
             top: -10%;
@@ -177,17 +164,16 @@
 </head>
 <body>
 
-    <!-- Fundo Dinâmico -->
     <div class="global-bg"></div>
     <div class="overlay"></div>
     <div id="sakura-container"></div>
 
-    <!-- TELA PRINCIPAL (CONVITE + LOCAL) -->
     <div id="main-invite" class="page-container">
         <div class="card-convite">
-            <div class="card-header">VOCÊ FOI CONVOCADO!</div>
+            <div class="card-header">CONVITE ESPECIAL</div>
             <div class="card-body">
-                <img src="convite.PNG" alt="Convite Otoniel" class="img-display">
+                <!-- Alterado para .PNG maiúsculo -->
+                <img src="convite%20otoniel.PNG" alt="Convite Otoniel" class="img-display">
             </div>
             <div class="info-footer">
                 <div class="text-center mb-1">
@@ -205,13 +191,13 @@
         </button>
     </div>
 
-    <!-- TELA DE CONFIRMAÇÃO (REPETE CONVITE) -->
     <div id="confirmation-page" class="page-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
         <div class="glass-box-confirm">
             <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
             
-            <div class="img-container-confirm">
-                <img src="convite.PNG" alt="Convite Confirmado" class="img-display">
+            <div class="mb-6 w-full rounded-xl overflow-hidden border-2 border-pink-500">
+                <!-- Alterado para .PNG maiúsculo -->
+                <img src="convite%20otoniel.PNG" alt="Convite Confirmado" class="img-display">
             </div>
 
             <p class="text-lg font-bold mb-4 text-white">Presença confirmada!</p>
@@ -239,12 +225,11 @@
             }, 500);
         }
 
-        // Animação das pétalas de Sakura
         function createSakura() {
             const container = document.getElementById('sakura-container');
-            if (container.children.length > 25) return;
+            if (container.children.length > 20) return;
             const p = document.createElement('div');
-            const size = (Math.random() * 12 + 8) + 'px';
+            const size = (Math.random() * 10 + 8) + 'px';
             p.className = 'sakura';
             p.style.left = (Math.random() * 100) + 'vw';
             p.style.width = size;
@@ -253,7 +238,7 @@
             container.appendChild(p);
             setTimeout(() => p.remove(), 7000);
         }
-        setInterval(createSakura, 500);
+        setInterval(createSakura, 600);
     </script>
 </body>
 </html>

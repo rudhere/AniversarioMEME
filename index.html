@@ -17,7 +17,7 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        /* Fundo de contingência caso o link do Drive falhe */
+        /* Fundo fixo - Usando um link direto estável para o GitHub Pages */
         .global-bg {
             position: fixed;
             top: 0;
@@ -25,7 +25,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* Usando um link estável de alta definição do Naruto/Sakura */
             background-image: url('https://images.alphacoders.com/605/605592.png');
             background-size: cover;
             background-position: center;
@@ -37,7 +36,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            background: rgba(0, 0, 0, 0.5);
             z-index: 0;
         }
 
@@ -181,7 +180,7 @@
             width: 100%;
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid rgba(236, 72, 153, 0.5);
+            border: 2px solid #ec4899;
             margin-bottom: 1.5rem;
         }
 
@@ -191,7 +190,6 @@
             display: block;
         }
 
-        /* Sakura falling effect */
         .sakura {
             position: fixed;
             top: -10%;
@@ -214,7 +212,6 @@
     <div class="overlay"></div>
     <div id="sakura-container"></div>
 
-    <!-- TELA 1 -->
     <div id="main-invite" class="page-container">
         <div class="card-convite">
             <div class="card-header">CONVITE DE ANIVERSÁRIO</div>
@@ -244,7 +241,7 @@
                     <div class="flex-1">
                         <div class="text-[10px] text-pink-500 font-bold uppercase">Localização</div>
                         <div class="text-xs font-bold text-gray-800">Q. 101 Loja 7 - Águas Claras</div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Q.+101+Loja+7+Aguas+Claras+Brasilia" target="_blank" class="btn-mapa">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Q.+101+Loja+7+-+Águas+Claras+Brasília+-+DF" target="_blank" class="btn-mapa">
                             📍 Abrir no Mapa
                         </a>
                     </div>
@@ -257,15 +254,12 @@
         </button>
     </div>
 
-    <!-- TELA 2 -->
     <div id="confirmation-page" class="page-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
         <div class="glass-box-confirm">
             <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
             
             <div class="img-container">
-                <!-- Usando o link lh3 do Drive mas com fallback para imagem local se falhar -->
-                <img src="https://lh3.googleusercontent.com/d/1Dd3YL_5BWSLXNKO8rvq7GhDlw8gsE8YW" 
-                     onerror="this.src='https://i.ibb.co/Xf8R3mN/Convite-Anivers-rio-Otoniel.jpg'"
+                <img src="https://i.ibb.co/Xf8R3mN/Convite-Anivers-rio-Otoniel.jpg" 
                      alt="Confirmação Otoniel" 
                      class="img-confirmado">
             </div>
@@ -280,20 +274,18 @@
 
     <script>
         function confirmar() {
-            const p1 = document.getElementById('main-invite');
+            document.getElementById('main-invite').style.display = 'none';
             const p2 = document.getElementById('confirmation-page');
-            p1.style.display = 'none';
             p2.style.display = 'flex';
             setTimeout(() => { p2.style.opacity = '1'; }, 50);
         }
 
         function voltar() {
-            const p1 = document.getElementById('main-invite');
             const p2 = document.getElementById('confirmation-page');
             p2.style.opacity = '0';
             setTimeout(() => {
                 p2.style.display = 'none';
-                p1.style.display = 'flex';
+                document.getElementById('main-invite').style.display = 'flex';
             }, 500);
         }
 

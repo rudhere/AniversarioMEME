@@ -12,12 +12,12 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow: hidden;
             background-color: #1a1016;
             font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
         }
 
-        /* AJUSTE DE CASE-SENSITIVE: O ficheiro no teu GitHub chama-se background.JPG */
+        /* FUNDO OTIMIZADO PARA MOBILE */
         .global-bg {
             position: fixed;
             top: 0;
@@ -27,12 +27,13 @@
             z-index: -1;
             background-image: url('background.JPG'); 
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -42,16 +43,15 @@
         }
 
         .page-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10;
+            padding: 20px 0;
         }
 
         .card-convite {
@@ -62,7 +62,7 @@
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             border: 4px solid #ec4899;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             flex-direction: column;
         }
@@ -70,7 +70,7 @@
         .card-header {
             background-color: #ec4899;
             color: white;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             font-family: 'Bangers', cursive;
             font-size: 1.5rem;
@@ -78,67 +78,41 @@
         }
 
         .card-body {
-            padding: 15px 20px;
-            text-align: center;
-            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://www.transparenttextures.com/patterns/sakura.png');
-        }
-
-        .nome-otoniel {
-            font-family: 'Bangers', cursive;
-            font-size: 3.5rem;
-            color: #333;
-            margin: 0;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-
-        .idade-badge {
-            background: #ec4899;
-            color: white;
-            display: inline-block;
-            padding: 2px 15px;
-            border-radius: 10px;
-            font-family: 'Bangers', cursive;
-            font-size: 1.8rem;
-            margin: 8px 0;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: center;
-            background: #fdf2f8;
-            margin: 8px 0;
             padding: 10px;
-            border-radius: 12px;
-            border: 1px solid #f9a8d4;
-            text-align: left;
+            text-align: center;
+            background-color: #fff;
         }
 
-        .info-icon {
-            background: #ec4899;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 12px;
-            flex-shrink: 0;
+        .img-display {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .info-footer {
+            padding: 15px;
+            background: #fdf2f8;
+            border-top: 2px dashed #f9a8d4;
         }
 
         .btn-mapa {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             background: #333;
             color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 0.8rem;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: bold;
-            margin-top: 5px;
             text-decoration: none;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-mapa:active {
+            background: #000;
         }
 
         .font-naruto {
@@ -149,7 +123,7 @@
         .btn-ninja {
             background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
             color: white;
-            padding: 16px 40px;
+            padding: 18px 45px;
             border-radius: 50px;
             border: 3px solid white;
             font-size: 1.6rem;
@@ -175,23 +149,13 @@
             box-shadow: 0 0 50px rgba(236, 72, 153, 0.6);
         }
 
-        .img-container {
+        .img-container-confirm {
             width: 100%;
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid #ec4899;
             margin-bottom: 1.5rem;
             background: #1a1016;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .img-confirmado {
-            width: 100%;
-            height: auto;
-            display: block;
         }
 
         .sakura {
@@ -212,44 +176,27 @@
 </head>
 <body>
 
+    <!-- Camada de Fundo -->
     <div class="global-bg"></div>
     <div class="overlay"></div>
     <div id="sakura-container"></div>
 
+    <!-- TELA PRINCIPAL -->
     <div id="main-invite" class="page-container">
         <div class="card-convite">
-            <div class="card-header">CONVITE DE ANIVERSÁRIO</div>
+            <div class="card-header">VOCÊ FOI CONVOCADO!</div>
             <div class="card-body">
-                <h1 class="nome-otoniel">OTONIEL</h1>
-                <div class="idade-badge">32 ANOS</div>
-                
-                <div class="flex gap-2">
-                    <div class="info-row flex-1">
-                        <div class="info-icon">📅</div>
-                        <div>
-                            <div class="text-[10px] text-pink-500 font-bold">DATA</div>
-                            <div class="font-bold text-gray-800 text-sm">23 de Maio</div>
-                        </div>
-                    </div>
-                    <div class="info-row flex-1">
-                        <div class="info-icon">⏰</div>
-                        <div>
-                            <div class="text-[10px] text-pink-500 font-bold">HORA</div>
-                            <div class="font-bold text-gray-800 text-sm">19:30H</div>
-                        </div>
-                    </div>
+                <!-- Imagem do Convite na Tela Inicial -->
+                <img src="convite.PNG" alt="Convite Otoniel" class="img-display">
+            </div>
+            <div class="info-footer">
+                <div class="text-center mb-2">
+                    <p class="text-xs text-pink-600 font-bold uppercase tracking-widest">Local do Evento</p>
+                    <p class="text-sm font-bold text-gray-800">Q. 101 Loja 7 - Águas Claras</p>
                 </div>
-
-                <div class="info-row">
-                    <div class="info-icon">📍</div>
-                    <div class="flex-1">
-                        <div class="text-[10px] text-pink-500 font-bold uppercase">Localização</div>
-                        <div class="text-xs font-bold text-gray-800">Q. 101 Loja 7 - Águas Claras</div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Q.+101+Loja+7+-+Águas+Claras+Brasília+-+DF" target="_blank" class="btn-mapa">
-                            📍 Abrir no Mapa
-                        </a>
-                    </div>
-                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Q.+101+Loja+7+-+Águas+Claras+Brasília+-+DF" target="_blank" class="btn-mapa">
+                    📍 Ver Localização no Mapa
+                </a>
             </div>
         </div>
 
@@ -258,21 +205,20 @@
         </button>
     </div>
 
+    <!-- TELA DE CONFIRMAÇÃO -->
     <div id="confirmation-page" class="page-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
         <div class="glass-box-confirm">
             <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
             
-            <div class="img-container">
-                <!-- AJUSTE DE CASE-SENSITIVE: O ficheiro no teu GitHub chama-se convite.PNG -->
-                <img src="convite.PNG" 
-                     alt="Convite Otoniel" 
-                     class="img-confirmado">
+            <div class="img-container-confirm">
+                <!-- Imagem do Convite na Tela de Confirmação -->
+                <img src="convite.PNG" alt="Convite Otoniel Confirmado" class="img-display">
             </div>
 
-            <p class="text-lg font-bold mb-4 text-white">Presença confirmada!</p>
+            <p class="text-lg font-bold mb-4 text-white">Sua presença foi registrada!</p>
             
             <button onclick="voltar()" class="text-pink-300 font-bold uppercase text-xs tracking-widest border-b border-pink-300 pb-1">
-                ← Voltar
+                ← Voltar para o Convite
             </button>
         </div>
     </div>

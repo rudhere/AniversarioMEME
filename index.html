@@ -17,7 +17,7 @@
             min-height: 100vh;
         }
 
-        /* FUNDO OTIMIZADO PARA MOBILE */
+        /* FUNDO: Nome exato conforme repositório (background.JPG) */
         .global-bg {
             position: fixed;
             top: 0;
@@ -56,7 +56,7 @@
 
         .card-convite {
             background: white;
-            width: 90%;
+            width: 92%;
             max-width: 400px;
             border-radius: 20px;
             overflow: hidden;
@@ -78,11 +78,12 @@
         }
 
         .card-body {
-            padding: 10px;
+            padding: 8px;
             text-align: center;
             background-color: #fff;
         }
 
+        /* IMAGEM DO CONVITE: Nome exato conforme repositório (convite.PNG) */
         .img-display {
             width: 100%;
             height: auto;
@@ -176,26 +177,25 @@
 </head>
 <body>
 
-    <!-- Camada de Fundo -->
+    <!-- Fundo Dinâmico -->
     <div class="global-bg"></div>
     <div class="overlay"></div>
     <div id="sakura-container"></div>
 
-    <!-- TELA PRINCIPAL -->
+    <!-- TELA PRINCIPAL (CONVITE + LOCAL) -->
     <div id="main-invite" class="page-container">
         <div class="card-convite">
             <div class="card-header">VOCÊ FOI CONVOCADO!</div>
             <div class="card-body">
-                <!-- Imagem do Convite na Tela Inicial -->
                 <img src="convite.PNG" alt="Convite Otoniel" class="img-display">
             </div>
             <div class="info-footer">
-                <div class="text-center mb-2">
-                    <p class="text-xs text-pink-600 font-bold uppercase tracking-widest">Local do Evento</p>
+                <div class="text-center mb-1">
+                    <p class="text-xs text-pink-600 font-bold uppercase tracking-widest">Localização</p>
                     <p class="text-sm font-bold text-gray-800">Q. 101 Loja 7 - Águas Claras</p>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Q.+101+Loja+7+-+Águas+Claras+Brasília+-+DF" target="_blank" class="btn-mapa">
-                    📍 Ver Localização no Mapa
+                    📍 Ver no Google Maps
                 </a>
             </div>
         </div>
@@ -205,20 +205,19 @@
         </button>
     </div>
 
-    <!-- TELA DE CONFIRMAÇÃO -->
+    <!-- TELA DE CONFIRMAÇÃO (REPETE CONVITE) -->
     <div id="confirmation-page" class="page-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
         <div class="glass-box-confirm">
             <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
             
             <div class="img-container-confirm">
-                <!-- Imagem do Convite na Tela de Confirmação -->
-                <img src="convite.PNG" alt="Convite Otoniel Confirmado" class="img-display">
+                <img src="convite.PNG" alt="Convite Confirmado" class="img-display">
             </div>
 
-            <p class="text-lg font-bold mb-4 text-white">Sua presença foi registrada!</p>
+            <p class="text-lg font-bold mb-4 text-white">Presença confirmada!</p>
             
             <button onclick="voltar()" class="text-pink-300 font-bold uppercase text-xs tracking-widest border-b border-pink-300 pb-1">
-                ← Voltar para o Convite
+                ← Voltar
             </button>
         </div>
     </div>
@@ -240,11 +239,12 @@
             }, 500);
         }
 
+        // Animação das pétalas de Sakura
         function createSakura() {
             const container = document.getElementById('sakura-container');
-            if (container.children.length > 20) return;
+            if (container.children.length > 25) return;
             const p = document.createElement('div');
-            const size = (Math.random() * 10 + 8) + 'px';
+            const size = (Math.random() * 12 + 8) + 'px';
             p.className = 'sakura';
             p.style.left = (Math.random() * 100) + 'vw';
             p.style.width = size;
@@ -253,7 +253,7 @@
             container.appendChild(p);
             setTimeout(() => p.remove(), 7000);
         }
-        setInterval(createSakura, 600);
+        setInterval(createSakura, 500);
     </script>
 </body>
 </html>

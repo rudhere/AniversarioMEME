@@ -17,7 +17,7 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        /* Fundo fixo - Usando um link direto estável para o GitHub Pages */
+        /* AJUSTE FINAL: O ficheiro no teu GitHub chama-se background.JPG (maiúsculas no final) */
         .global-bg {
             position: fixed;
             top: 0;
@@ -25,9 +25,10 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-image: url('https://images.alphacoders.com/605/605592.png');
+            background-image: url('background.JPG'); 
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
         .overlay {
@@ -36,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 0;
         }
 
@@ -53,7 +54,6 @@
             z-index: 10;
         }
 
-        /* Cartão de Convite */
         .card-convite {
             background: white;
             width: 90%;
@@ -160,9 +160,8 @@
             z-index: 20;
         }
 
-        /* Segunda Parte: Confirmação */
         .glass-box-confirm {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(20, 10, 15, 0.95);
             padding: 1.5rem;
             border-radius: 2rem;
             border: 3px solid #ec4899;
@@ -182,6 +181,11 @@
             overflow: hidden;
             border: 2px solid #ec4899;
             margin-bottom: 1.5rem;
+            background: #1a1016;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .img-confirmado {
@@ -259,8 +263,9 @@
             <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
             
             <div class="img-container">
-                <img src="https://i.ibb.co/Xf8R3mN/Convite-Anivers-rio-Otoniel.jpg" 
-                     alt="Confirmação Otoniel" 
+                <!-- Certifique-se de que o nome é convite.png no GitHub -->
+                <img src="convite.png" 
+                     alt="Convite Otoniel" 
                      class="img-confirmado">
             </div>
 
@@ -291,7 +296,7 @@
 
         function createSakura() {
             const container = document.getElementById('sakura-container');
-            if (container.children.length > 25) return;
+            if (container.children.length > 20) return;
             const p = document.createElement('div');
             const size = (Math.random() * 10 + 8) + 'px';
             p.className = 'sakura';
@@ -302,7 +307,7 @@
             container.appendChild(p);
             setTimeout(() => p.remove(), 7000);
         }
-        setInterval(createSakura, 500);
+        setInterval(createSakura, 600);
     </script>
 </body>
 </html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Aniversário - Otoniel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #1a1016;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Fundo de contingência caso o link do Drive falhe */
+        .global-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Usando um link estável de alta definição do Naruto/Sakura */
+            background-image: url('https://images.alphacoders.com/605/605592.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: 0;
+        }
+
+        .page-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* Cartão de Convite */
+        .card-convite {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border: 4px solid #ec4899;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            background-color: #ec4899;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .card-body {
+            padding: 15px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://www.transparenttextures.com/patterns/sakura.png');
+        }
+
+        .nome-otoniel {
+            font-family: 'Bangers', cursive;
+            font-size: 3.5rem;
+            color: #333;
+            margin: 0;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .idade-badge {
+            background: #ec4899;
+            color: white;
+            display: inline-block;
+            padding: 2px 15px;
+            border-radius: 10px;
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            margin: 8px 0;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            background: #fdf2f8;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #f9a8d4;
+            text-align: left;
+        }
+
+        .info-icon {
+            background: #ec4899;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn-mapa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+            text-decoration: none;
+        }
+
+        .font-naruto {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+        }
+
+        .btn-ninja {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            border: 3px solid white;
+            font-size: 1.6rem;
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.8);
+            cursor: pointer;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            z-index: 20;
+        }
+
+        /* Segunda Parte: Confirmação */
+        .glass-box-confirm {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem;
+            border-radius: 2rem;
+            border: 3px solid #ec4899;
+            color: white;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 50px rgba(236, 72, 153, 0.6);
+        }
+
+        .img-container {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(236, 72, 153, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .img-confirmado {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Sakura falling effect */
+        .sakura {
+            position: fixed;
+            top: -10%;
+            background-color: #ffb7d5;
+            border-radius: 100% 10% 100% 10%;
+            pointer-events: none;
+            z-index: 5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-bg"></div>
+    <div class="overlay"></div>
+    <div id="sakura-container"></div>
+
+    <!-- TELA 1 -->
+    <div id="main-invite" class="page-container">
+        <div class="card-convite">
+            <div class="card-header">CONVITE DE ANIVERSÁRIO</div>
+            <div class="card-body">
+                <h1 class="nome-otoniel">OTONIEL</h1>
+                <div class="idade-badge">32 ANOS</div>
+                
+                <div class="flex gap-2">
+                    <div class="info-row flex-1">
+                        <div class="info-icon">📅</div>
+                        <div>
+                            <div class="text-[10px] text-pink-500 font-bold">DATA</div>
+                            <div class="font-bold text-gray-800 text-sm">23 de Maio</div>
+                        </div>
+                    </div>
+                    <div class="info-row flex-1">
+                        <div class="info-icon">⏰</div>
+                        <div>
+                            <div class="text-[10px] text-pink-500 font-bold">HORA</div>
+                            <div class="font-bold text-gray-800 text-sm">19:30H</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-icon">📍</div>
+                    <div class="flex-1">
+                        <div class="text-[10px] text-pink-500 font-bold uppercase">Localização</div>
+                        <div class="text-xs font-bold text-gray-800">Q. 101 Loja 7 - Águas Claras</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Q.+101+Loja+7+Aguas+Claras+Brasilia" target="_blank" class="btn-mapa">
+                            📍 Abrir no Mapa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="confirmar()" class="btn-ninja font-naruto animate-bounce">
+            Confirmar Presença
+        </button>
+    </div>
+
+    <!-- TELA 2 -->
+    <div id="confirmation-page" class="page-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+        <div class="glass-box-confirm">
+            <h2 class="font-naruto text-4xl mb-4 text-[#ec4899]">MISSÃO ACEITA!</h2>
+            
+            <div class="img-container">
+                <!-- Usando o link lh3 do Drive mas com fallback para imagem local se falhar -->
+                <img src="https://lh3.googleusercontent.com/d/1Dd3YL_5BWSLXNKO8rvq7GhDlw8gsE8YW" 
+                     onerror="this.src='https://i.ibb.co/Xf8R3mN/Convite-Anivers-rio-Otoniel.jpg'"
+                     alt="Confirmação Otoniel" 
+                     class="img-confirmado">
+            </div>
+
+            <p class="text-lg font-bold mb-4 text-white">Presença confirmada!</p>
+            
+            <button onclick="voltar()" class="text-pink-300 font-bold uppercase text-xs tracking-widest border-b border-pink-300 pb-1">
+                ← Voltar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function confirmar() {
+            const p1 = document.getElementById('main-invite');
+            const p2 = document.getElementById('confirmation-page');
+            p1.style.display = 'none';
+            p2.style.display = 'flex';
+            setTimeout(() => { p2.style.opacity = '1'; }, 50);
+        }
+
+        function voltar() {
+            const p1 = document.getElementById('main-invite');
+            const p2 = document.getElementById('confirmation-page');
+            p2.style.opacity = '0';
+            setTimeout(() => {
+                p2.style.display = 'none';
+                p1.style.display = 'flex';
+            }, 500);
+        }
+
+        function createSakura() {
+            const container = document.getElementById('sakura-container');
+            if (container.children.length > 25) return;
+            const p = document.createElement('div');
+            const size = (Math.random() * 10 + 8) + 'px';
+            p.className = 'sakura';
+            p.style.left = (Math.random() * 100) + 'vw';
+            p.style.width = size;
+            p.style.height = size;
+            p.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            container.appendChild(p);
+            setTimeout(() => p.remove(), 7000);
+        }
+        setInterval(createSakura, 500);
+    </script>
+</body>
+</html>
